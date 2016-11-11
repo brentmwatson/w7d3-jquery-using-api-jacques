@@ -17,7 +17,7 @@
     <!-- Content goes here. -->
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div>
                 <div>
                     <h1>Notemeister 5000 API</h1>
                 </div>
@@ -32,27 +32,43 @@
                         <div>
                             <button type="button" class="btn btn-primary btn-sm active">Create</button>
                         </div>
-
-                        <div>
-                            <input type="text" name="Tag" placeholder="Search Tag" />
-                        </div>
-                        <div id='displaynotes'>
-
-                        </div>
                     </form>
+                    <div id='displaynotes'>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <!-- Scripts go here. -->
+
+    <!-- ******* handlebars ********* -->
+    <!-- handlebars template -->
+    <script id="notes-template" type="text/x-handlebars-template">
+      <div class="displaynotes">
+        <h1>{{title}}</h1>
+        <div class="body">
+          {{body}}
+          <div class="tags">
+            {{#each tags}}
+            <button>{{name}}</button>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </script>
+    <!-- handlebars script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <!-- ************************** -->
+
     <script type="text/javascript" src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch"></script>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <!-- Latest compiled bootstrap JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- handlebars -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
 </body>
 
 </html>
