@@ -16,10 +16,10 @@
 <body>
     <!-- Content goes here. -->
     <div class="container">
-        <div class="row">
+      <div class="row">
             <div>
                 <div>
-                    <h1>Notemeister 5000 API: <span class= 'notemeister'></span></h1>
+                    <h1> Notemeister 5000 API:<span id="notemeister"></span></h1>
                 </div>
                 <div>
                     <form id="form">
@@ -30,11 +30,13 @@
                             <input type="text" name="body" placeholder="Enter Text here" />
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary btn-sm active">Create</button>
+                            <input type="submit" id="submit" name="submit" class="btn btn-primary btn-sm active">
                         </div>
                     </form>
-                    <div id='displaynotes'>
+                    <div id='notes'>
                     </div>
+                    <div id="modal">
+                    </div
                 </div>
             </div>
         </div>
@@ -46,17 +48,36 @@
     <!-- ******* handlebars ********* -->
     <!-- handlebars template -->
     <script id="notes-template" type="text/x-handlebars-template">
-      <div class="displaynotes">
-        <h1>{{title}}</h1>
-        <div class="body">
-          {{body}}
-          <div class="tags">
-            {{#each tags}}
-            <a href= "#">{{name}}</a>
-            {{/each}}
-          </div>
+        <div class="displaynotes">
+            <h3>{{title}}</h3>
+            <div class="body">
+                {{body}}
+                <div class="tags">
+                    {{#each tags}}
+                    <a href="#" class='tag'>{{name}}</a>
+                    {{/each}}
+                </div>
+            </div>
         </div>
-      </div>
+    </script>
+
+
+    <!-- Modal -->
+    <script id="modal_template" type="text/x-handlebars-template">
+        <div id="note_modal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <!-- modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="title">{{title}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{body}}</p>
+                    </div>
+                </div>
+            </div><
+        </div>
     </script>
     <!-- handlebars script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
