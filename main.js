@@ -1,28 +1,26 @@
+//Prepare document
+//launch modal
 
-
-$(document).ready(function(){
-  if(window.location.hash.match(/#\d+/).length > 0){
-    id = window.location.hash.substring(1)
-    $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes' + id)
-    .then(
-      function(response){
-        console.log(response.note)
-        var display = modal_template(response.note)
-        $('#modal').append(display)
-        $('#note_modal').modal('show')
+$(document).ready(
+  function modal(){
+    if(window.location.hash) {
+      if(window.location.hash.match(/#\d+/).length > 0) {
+        id = window.location.hash.substring(1);
+        $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes' + id)
+          .then(function(response){
+            console.log(response.note)
+            var  display_modal = modal_template(response.note)
+            $('#modal').append(display_modal)
+            $('#modal_note').modal('show')
+          }
+        )
       }
-    )
+    }
   }
-})
-
+)
 
 var source = $("#modal_template").html();
 var modal_template = Handlebars.compile(source);
-
-
-function clear_form(selector){
-  $(selector)[0].reset()
-}
 
 // variables to use Handlebars
 var source   = $("#notes-template").html();
@@ -94,11 +92,15 @@ $('#form').on('submit',
           function(note){
             var note_display = note_template (note)
             $('#notes').prepend(note_display)
+            $('#form')[0].reset()
+
           }
         )
       }
     )
 })
+
+//******* Modal to display note ***********//
 
 var modal_source = $('#modal-template').html()
 var modal_template = Handlebars.compile(modal_source)
@@ -109,9 +111,10 @@ function modal(){
       id = window.location.hash.substring(1);
       $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes' + id)
         .then(function(response){
+          console.log(response.note)
           var  display_modal = modal_template(response.note)
           $('#modal').append(display_modal)
-          $('#modal_toggle').modal('show')
+          $('#modal_note').modal('show')
         });
     }
   }
