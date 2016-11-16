@@ -3,7 +3,7 @@
 
 $(document).ready(
   //******* Modal to display note ***********//
-  function(){
+  function modal(){
     if(window.location.hash) {
       if(window.location.hash.match(/#\d+/).length > 0) {
         id = window.location.hash.substring(1);
@@ -90,12 +90,10 @@ $('#form').on('submit',
     ev.preventDefault()
     $.post('https://shielded-beach-33937.herokuapp.com/api/notes', $(this).serialize()
     ).done(
-      function(recall_notes){
         function(note){
           var note_display = note_template (note)
           $('#notes').prepend(note_display)
           clear_form('#form')
         }
-      }
     )
 })
