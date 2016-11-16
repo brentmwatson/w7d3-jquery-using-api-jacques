@@ -2,11 +2,12 @@
 //launch modal
 
 $(document).ready(
-  function modal(){
+  //******* Modal to display note ***********//
+  function(){
     if(window.location.hash) {
       if(window.location.hash.match(/#\d+/).length > 0) {
         id = window.location.hash.substring(1);
-        $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes' + id)
+        $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes/' + id)
           .then(function(response){
             console.log(response.note)
             var  display_modal = modal_template(response.note)
@@ -73,6 +74,9 @@ $('#notes').on('click', '.tag', function(ev){
   )
 })
 
+function clear_form(selector){
+  $(selector)[0].reset();
+}
 //********* form button click**********//
 //when clicked
   //(prevent the default)
@@ -87,35 +91,11 @@ $('#form').on('submit',
     $.post('https://shielded-beach-33937.herokuapp.com/api/notes', $(this).serialize()
     ).done(
       function(recall_notes){
-      clear_form('#form')
-        recall_notes.notes.forEach(
-          function(note){
-            var note_display = note_template (note)
-            $('#notes').prepend(note_display)
-            $('#form')[0].reset()
-
-          }
-        )
+        function(note){
+          var note_display = note_template (note)
+          $('#notes').prepend(note_display)
+          clear_form('#form')
+        }
       }
     )
 })
-
-//******* Modal to display note ***********//
-
-var modal_source = $('#modal-template').html()
-var modal_template = Handlebars.compile(modal_source)
-
-function modal(){
-  if(window.location.hash) {
-    if(window.location.hash.match(/#\d+/).length > 0) {
-      id = window.location.hash.substring(1);
-      $.getJSON('https://shielded-beach-33937.herokuapp.com/api/notes' + id)
-        .then(function(response){
-          console.log(response.note)
-          var  display_modal = modal_template(response.note)
-          $('#modal').append(display_modal)
-          $('#modal_note').modal('show')
-        });
-    }
-  }
-}
