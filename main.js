@@ -90,12 +90,10 @@ $('#form').on('submit',
     ev.preventDefault()
     $.post('https://shielded-beach-33937.herokuapp.com/api/notes', $(this).serialize()
     ).done(
-      function(recall_notes){
         function(note){
           var note_display = note_template (note)
           $('#notes').prepend(note_display)
           clear_form('#form')
         }
-      }
     )
 })
