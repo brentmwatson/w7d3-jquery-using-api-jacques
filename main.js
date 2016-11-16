@@ -3,7 +3,7 @@
 
 $(document).ready(
   //******* Modal to display note ***********//
-  function(){
+  function modal(){
     if(window.location.hash) {
       if(window.location.hash.match(/#\d+/).length > 0) {
         id = window.location.hash.substring(1);
@@ -66,8 +66,9 @@ $('#notes').on('click', '.tag', function(ev){
     $('#notemeister').append(response.tag.name) //adds text to
       response.tag.notes.forEach( //smaller scope then before
         function(note){
-          var note_display = note_template (note)
+          var note_display = note_template(note)
           $('#notes').prepend(note_display)
+          clear_form('#form')
         }
       )
     }
