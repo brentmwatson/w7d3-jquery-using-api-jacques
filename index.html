@@ -37,7 +37,7 @@
                             <input type="submit" id="submit" name="submit" class="btn btn-primary btn-sm active">
                         </div>
                     </form>
-                    <div id='notes'>
+                    <div id="notes" class="tags">
                     </div>
                     <div id="modal">
                     </div
@@ -58,7 +58,7 @@
                 {{body}}
                 <div class="tags">
                     {{#each tags}}
-                    <a href="#" class='tag'>{{name}}</a>
+                    <a href="https://shielded-beach-33937.herokuapp.com/api/notes/tag" class='tag'>{{name}}</a>
                     {{/each}}
                 </div>
             </div>
